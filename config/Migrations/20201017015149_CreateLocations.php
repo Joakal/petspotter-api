@@ -42,11 +42,11 @@ class CreateLocations extends AbstractMigration
             'scale' => 6,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         $table->create();

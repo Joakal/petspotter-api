@@ -26,11 +26,11 @@ class CreateBreeds extends AbstractMigration
             'null' => true,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         $table->create();
