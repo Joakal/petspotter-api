@@ -26,7 +26,7 @@ $this->disableAutoLayout();
         <?= $this->fetch('title', 'Pupper spotter') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css(['home']) ?>
+    <?= $this->Html->css('app') ?>
     <?= $this->Html->script('app', ['defer' => true]) ?>
 
     <?= $this->fetch('meta') ?>
@@ -37,7 +37,7 @@ $this->disableAutoLayout();
     <div id="app">
         <my-header></my-header>
 
-        <app></app>
+        <my-app></my-app>
 
         <my-footer></my-footer>
     </div>
