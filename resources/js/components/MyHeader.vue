@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div class="text-center">
+        <div class="header">
             <h1>
                 {{ title }}
             </h1>

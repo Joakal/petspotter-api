@@ -1,7 +1,7 @@
 <template>
     <footer>
-        <div>
-            {{footer}}
+        <div class="footer">
+            <a :href="footer_url">{{footer_text}}</a>
         </div>
     </footer>
 </template>
@@ -10,7 +10,8 @@
     export default {
         data() {
             return {
-                footer: 'Footer!'
+                footer_text: 'Made with ❤️ by Andreas',
+                footer_url: 'https://www.linkedin.com/in/amarkauskas/'
             };
         }
     }
