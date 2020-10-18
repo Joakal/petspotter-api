@@ -26,7 +26,7 @@ class CreateLocations extends AbstractMigration
             'null' => true,
         ]);
         $table->addColumn('seen', 'timestamp', [
-            'default' => null,
+            'default' => 'CURRENT_TIMESTAMP',
             'null' => false,
         ]);
         $table->addColumn('lat', 'decimal', [
@@ -35,7 +35,7 @@ class CreateLocations extends AbstractMigration
             'precision' => 10,
             'scale' => 6,
         ]);
-        $table->addColumn('long', 'decimal', [
+        $table->addColumn('lon', 'decimal', [
             'default' => null,
             'null' => false,
             'precision' => 11,
