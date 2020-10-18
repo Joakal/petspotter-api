@@ -27,8 +27,6 @@ $this->disableAutoLayout();
     </title>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('app') ?>
-    <?= $this->Html->script('app', ['defer' => true]) ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -41,5 +39,9 @@ $this->disableAutoLayout();
 
         <my-footer></my-footer>
     </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9Yviq5JBX62VaxEJRP63VVPgKJJeW2YU"
+    ></script>
+    <?= $this->Html->script('app') ?>
 </body>
 </html>

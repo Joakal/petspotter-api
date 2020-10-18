@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Validation\Validator;
+
 /**
  * Locations Controller
  *
@@ -114,15 +116,40 @@ class LocationsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function box($lat = null, $lon = null, $endLat = null, $endLon = null)
+    public function box()
     {
+        $validator = new Validator();
+        $validator
+        ->requirePresence(['nelat', 'nelng', 'swlat', 'swlng'])
+        ->add('nelat', 'decimal')
+        ->add('nelng', 'decimal') 
+        ->add('swlat', 'decimal') 
+        ->add('swlng', 'decimal');
+        $query = $this->request->getQueryParams();
+        $errors = $validator->validate($query);
+
+        if (count($errors) > 0) {
+            $this->set([
+                'errors' => $errors,
+                '_serialize' => 'errors',
+            ]);
+            $this->RequestHandler->renderAs($this, 'json');
+            return;
+        }
+
+        $lat = $query['nelat'];
+        $lon = $query['nelng'];
+        $endLat = $query['swlat'];
+        $endLon = $query['swlng'];
+        
+        
         $locations = $this->paginate($this->Locations
             ->find()
             ->select(['id', 'name', 'lat', 'lon'])
-            ->where(['lat >' => $lat])
-            ->where(['lon >' => $lon])
-            ->where(['lat <' => $endLat])
-            ->where(['lon <' => $endLon])
+            ->where(['lat <' =>  $lat])
+            ->where(['lon <' => $lon])
+            ->where(['lat >' => $endLat])
+            ->where(['lon >' => $endLon])
         );
 
         $this->set([
