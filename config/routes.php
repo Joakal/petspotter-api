@@ -55,8 +55,24 @@ $routes->scope('/', function (RouteBuilder $builder) {
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
+    $builder->scope('/api/', function (RouteBuilder $builder) {
+        $builder->resources('breeds');
+        $builder->get(
+            '/locations/:lat/:lon/:endLat/:endLon',
+            ['controller' => 'Locations', 'action' => 'box']
+        )
+        ->setPatterns([
+            'lat' => '([0-9.-]+).+?([0-9.-]+)', 
+            'lon' => '([0-9.-]+).+?([0-9.-]+)', 
+            'endLat' => '([0-9.-]+).+?([0-9.-]+)', 
+            'endLon' => '([0-9.-]+).+?([0-9.-]+)'
+        ])
+        ->setPass(['lat', 'lon', 'endLat', 'endLon']);
+        
+        $builder->resources('locations');
+    })
+    ->setExtensions(['json']);
+    
     /*
      * Connect catchall routes for all controllers.
      *
