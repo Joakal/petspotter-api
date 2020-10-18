@@ -1,6 +1,7 @@
 <template>
     <main class="main">
-        {{content}}
+        <my-map></my-map>
+        <spot-dog></spot-dog>
     </main>
 </template>
 
