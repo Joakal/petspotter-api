@@ -18,7 +18,7 @@ class BreedsController extends AppController
      */
     public function index()
     {
-        $breeds = $this->paginate($this->Breeds);
+        $breeds = $this->Breeds->find('all');
 
         $this->set([
             'breeds' => $breeds,
