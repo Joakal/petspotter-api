@@ -9,7 +9,6 @@
         <div class="form-field">
             <label for="breed">Pupper's breed</label>
             <SearchDropdown @on-item-selected="dropdownSelection = $event" @on-item-reset="dropdownSelection = {}" v-model="location.breed_id" placeholder="Find the breed" apiUrl="breeds" imageUrl="//petspotter.joakal.com/image/" />
-            {{ dropdownSelection && dropdownSelection.name }} 
         </div>
         <div class="form-field">
             <label for="time">When did you see this pupper?</label>
