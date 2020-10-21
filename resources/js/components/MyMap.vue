@@ -1,6 +1,6 @@
 <template>
     <div id="map" ref="map">
-        <map-marker v-for="location in locations" :key="location.id" :lat="location.lat" :lng="location.lon"></map-marker>
+        <map-marker v-for="location in locations" :key="location.id" :lat="location.lat" :lng="location.lon" :icon="location.breed.image" :breed="location.breed.name"></map-marker>
     </div>
 </template>
 
@@ -15,10 +15,7 @@
             return {
                 checking: false,
                 map: null,
-                locations: [{
-                    id: 1,
-                    lat: -25.344, lon: 131.036
-                }]
+                locations: []
             };
         },
 		methods: {
@@ -48,6 +45,7 @@
                                 lng: position.coords.longitude,
                             };
                             this.map.setCenter(pos);
+                            this.handleViewChange();
                         },
                         () => {
                             console.error("Error: The Geolocation service failed.")
@@ -58,17 +56,20 @@
                 }
             },
             handleViewChange() {
-                var bounds = this.map.getBounds();
-                var ne = bounds.getNorthEast(); // LatLng of the north-east corner
-                var sw = bounds.getSouthWest(); // LatLng of the south-west corder
+                const bounds = this.map.getBounds();
+                const center = this.map.getCenter();
+
+                const ne = bounds.getNorthEast(); // LatLng of the north-east corner
+                const sw = bounds.getSouthWest(); // LatLng of the south-west corder
                 
                 // update the locations here
                 this.getLocations(ne.lat(), ne.lng(), sw.lat(), sw.lng());
+                
+                this.$store.commit('updateLocation', { lat: center.lat(), lng: center.lng()} )
             }
 		},
         mounted() {
             // The location of Uluru
-            // TODO set location to browser location or default to uluru
             const uluru = { lat: -25.344, lng: 131.036 };
             // The map, centered at Uluru
             this.map = new google.maps.Map(this.$refs["map"], {

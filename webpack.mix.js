@@ -14,4 +14,5 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'webroot/js')
     .sass('resources/sass/app.scss', 'webroot/css')
     .sourceMaps()
+    .copy('resources/img/*', 'webroot/image')
     .copy('resources/img/favicon.ico', 'webroot/favicon.ico');
