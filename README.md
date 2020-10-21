@@ -18,6 +18,8 @@ composer install;
 cp config/app_local.example.php config/app_local.php;
 bin/cake migrations migrate;
 bin/cake migrations seed;
+yarn;
+yarn run dev;
 ```
 
 Visit http://localhost
