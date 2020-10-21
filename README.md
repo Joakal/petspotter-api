@@ -20,7 +20,7 @@ bin/cake migrations migrate;
 bin/cake migrations seed;
 ```
 
-Visit http://localhost:8000
+Visit http://localhost
 
 ## Creator
 
