@@ -59,13 +59,17 @@
                 const bounds = this.map.getBounds();
                 const center = this.map.getCenter();
 
-                const ne = bounds.getNorthEast(); // LatLng of the north-east corner
-                const sw = bounds.getSouthWest(); // LatLng of the south-west corder
+                if (bounds) {
+                    const ne = bounds.getNorthEast(); // LatLng of the north-east corner
+                    const sw = bounds.getSouthWest(); // LatLng of the south-west corder
+
+                    // update the locations here
+                    this.getLocations(ne.lat(), ne.lng(), sw.lat(), sw.lng());
+                }
                 
-                // update the locations here
-                this.getLocations(ne.lat(), ne.lng(), sw.lat(), sw.lng());
-                
-                this.$store.commit('updateLocation', { lat: center.lat(), lng: center.lng()} )
+                if (center) {
+                    this.$store.commit('updateLocation', { lat: center.lat(), lng: center.lng()} )
+                }
             }
 		},
         mounted() {
