@@ -143,14 +143,13 @@ class LocationsController extends AppController
         $endLon = $query['swlng'];
         
         
-        $locations = $this->paginate($this->Locations
-            ->find()
-            ->select(['id', 'name', 'lat', 'lon'])
-            ->where(['lat <' =>  $lat])
-            ->where(['lon <' => $lon])
-            ->where(['lat >' => $endLat])
-            ->where(['lon >' => $endLon])
-        );
+        $locations = $this->Locations
+        ->find('all', ['contain' => ['Breeds']])
+        ->select(['id', 'name', 'lat', 'lon', 'Breeds.name', 'Breeds.image'])
+        ->where(['lat <' =>  $lat])
+        ->where(['lon <' => $lon])
+        ->where(['lat >' => $endLat])
+        ->where(['lon >' => $endLon]);
 
         $this->set([
             'locations' => $locations,

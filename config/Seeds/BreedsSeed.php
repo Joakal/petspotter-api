@@ -34,6 +34,7 @@ class BreedsSeed extends AbstractSeed
                 continue;
             }
             $segments = explode(',', $line);
+            $segments[1] = trim($segments[1]);
             
             $data[] = array_combine($headers, $segments);
         }
