@@ -15,7 +15,7 @@ or
 
 ```bash
 composer install;
-cp app_local.example.php app_local.php;
+cp config/app_local.example.php config/app_local.php;
 bin/cake migrations migrate;
 bin/cake migrations seed;
 ```

@@ -1,8 +1,6 @@
 #!/bin/bash
 
 composer install;
-cp .env.example .env;
-touch database/database.sqlite;
-php artisan migrate;
-php artisan db:seed;
-php artisan serve;
+cp config/app_local.example.php config/app_local.php;
+bin/cake migrations migrate;
+bin/cake migrations seed;
